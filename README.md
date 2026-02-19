@@ -93,7 +93,10 @@ npm run release:mac    # macOS
 ## Current Limitations
 
 - MMS send is not yet implemented (Android companion app limitation)
+- User avatars not yet available (Also a protocol limitation)
 - macOS DMG not yet available (I need a mac to do this)
+
+I intend on making an updated version of the KDEConnect Android companion app to handle these shortcomings soon.
 
 ## License
 
