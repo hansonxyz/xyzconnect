@@ -8,21 +8,18 @@
 
 ## Why
 
-The primary motivation for this app was to make the pain of dealing with SMS 2FA codes easier to handle, and the project snowballed into a full SMS client to replace Microsoft Phone Link and similar with an open source solution.
+The primary motivation for this app was to make the pain of dealing with SMS 2FA codes easier to handle, and the project snowballed into a full SMS client to replace Microsoft Phone Link and similar with an open source alternative.
 
 ## Features
 
 - **Send and receive SMS** — Full two-way texting from your desktop
 - **View and save MMS** — Photos, videos, and audio arrive automatically with transcoding for browser-compatible playback
-- **Contact sync** — Names pulled from your phone's contacts
 - **Spam filter** — Hides unknown senders and short codes; surfaces verification messages
 - **One-click verification codes** — Copy 2FA codes from messages with a single click
 - **Unread filter** — Quickly see only conversations with new messages
 - **Desktop notifications** — Get notified of new messages with taskbar flash (Windows)
 - **Cross-platform** — Windows installer, Linux AppImage and .deb, macOS DMG
 - **Local network only** — All communication stays on your LAN. Nothing leaves your network.
-- **Image lightbox** — Click to view full-size images and videos with right-click save
-- **Search** — Filter conversations by contact name or phone number
 
 ## How It Works
 
