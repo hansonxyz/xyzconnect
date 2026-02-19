@@ -8,7 +8,7 @@
 
 ## Why
 
-The primary motivation for this app was to make the pain of dealing with SMS 2FA codes easier to deal with, and the project snowballed into a full SMS client to replace Microsoft Phone Link and similar with an open source solution.
+The primary motivation for this app was to make the pain of dealing with SMS 2FA codes easier to handle, and the project snowballed into a full SMS client to replace Microsoft Phone Link and similar with an open source solution.
 
 ## Features
 
