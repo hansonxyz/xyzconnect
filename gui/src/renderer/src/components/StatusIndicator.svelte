@@ -1,15 +1,27 @@
 <script lang="ts">
   import { effectiveState } from '../stores/connection.svelte'
+  import { t } from '../stores/i18n.svelte'
 
-  const stateConfig: Record<EffectiveState, { color: 'red' | 'yellow' | 'green'; label: string }> = {
-    'no-daemon': { color: 'red', label: 'Daemon not running' },
-    disconnected: { color: 'red', label: 'No device connected' },
-    discovering: { color: 'yellow', label: 'Searching for devices...' },
-    pairing: { color: 'yellow', label: 'Pairing...' },
-    connected: { color: 'green', label: 'Device connected' },
-    syncing: { color: 'yellow', label: 'Syncing...' },
-    ready: { color: 'green', label: 'Ready' },
-    error: { color: 'red', label: 'Error' }
+  const stateColors: Record<EffectiveState, 'red' | 'yellow' | 'green'> = {
+    'no-daemon': 'red',
+    disconnected: 'red',
+    discovering: 'yellow',
+    pairing: 'yellow',
+    connected: 'green',
+    syncing: 'yellow',
+    ready: 'green',
+    error: 'red',
+  }
+
+  const stateKeys: Record<EffectiveState, string> = {
+    'no-daemon': 'status.noDaemon',
+    disconnected: 'status.disconnected',
+    discovering: 'status.discovering',
+    pairing: 'status.pairing',
+    connected: 'status.connected',
+    syncing: 'status.syncing',
+    ready: 'status.ready',
+    error: 'status.error',
   }
 
   // Phone reconnects every ~5s causing effectiveState to cycle through
@@ -52,7 +64,7 @@
     }
   })
 
-  const config = $derived(stateConfig[displayState])
+  const config = $derived({ color: stateColors[displayState], label: t(stateKeys[displayState]) })
 </script>
 
 <div class="status-indicator">

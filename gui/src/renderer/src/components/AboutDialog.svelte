@@ -3,6 +3,8 @@
     onClose: () => void
   }
 
+  import { t } from '../stores/i18n.svelte'
+
   let { onClose }: Props = $props()
 
   function handleBackdropClick(e: MouseEvent): void {
@@ -15,52 +17,51 @@
 <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
 <div class="about-overlay" onclick={handleBackdropClick}>
   <div class="about-dialog">
-    <button class="about-dialog__close" onclick={onClose} title="Close">
+    <button class="about-dialog__close" onclick={onClose} title={t('about.close')}>
       <svg viewBox="0 0 24 24" width="20" height="20">
         <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
       </svg>
     </button>
 
     <div class="about-dialog__content">
-      <h2 class="about-dialog__name">XYZConnect</h2>
-      <p class="about-dialog__version">Version 0.1</p>
+      <h2 class="about-dialog__name">{t('about.name')}</h2>
+      <p class="about-dialog__version">{t('about.version')}</p>
 
       <div class="about-dialog__divider"></div>
 
       <p class="about-dialog__credit">
-        2026 by Brian Hanson<br>
+        {t('about.credit')}<br>
         <a href="https://github.com/hansonxyz/" target="_blank" rel="noopener noreferrer">github.com/hansonxyz</a>
       </p>
 
       <p class="about-dialog__license">
-        Released under the
+        {t('about.releasedUnder')}
         <a href="https://www.gnu.org/licenses/gpl-2.0.html" target="_blank" rel="noopener noreferrer"><strong>GNU GPL v2</strong></a>
-        and
+        {t('about.and')}
         <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer"><strong>GNU GPL v3</strong></a>
       </p>
 
       <div class="about-dialog__divider"></div>
 
       <div class="about-dialog__acknowledgments">
-        <p class="about-dialog__ack-title">Acknowledgments</p>
+        <p class="about-dialog__ack-title">{t('about.acknowledgments')}</p>
         <ul class="about-dialog__ack-list">
-          <li><a href="https://kdeconnect.kde.org/" target="_blank" rel="noopener noreferrer">KDE Connect</a> &mdash; open protocol for phone-desktop communication</li>
-          <li><a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer">FFmpeg</a> &mdash; video transcoding and thumbnail generation</li>
-          <li><a href="https://www.electronjs.org/" target="_blank" rel="noopener noreferrer">Electron</a> &mdash; cross-platform desktop framework</li>
-          <li><a href="https://svelte.dev/" target="_blank" rel="noopener noreferrer">Svelte</a> &mdash; reactive UI framework</li>
+          <li><a href="https://kdeconnect.kde.org/" target="_blank" rel="noopener noreferrer">KDE Connect</a> &mdash; {t('about.kdeDesc')}</li>
+          <li><a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer">FFmpeg</a> &mdash; {t('about.ffmpegDesc')}</li>
+          <li><a href="https://www.electronjs.org/" target="_blank" rel="noopener noreferrer">Electron</a> &mdash; {t('about.electronDesc')}</li>
+          <li><a href="https://svelte.dev/" target="_blank" rel="noopener noreferrer">Svelte</a> &mdash; {t('about.svelteDesc')}</li>
         </ul>
       </div>
 
       <div class="about-dialog__divider"></div>
 
       <p class="about-dialog__source">
-        Full license and source available at<br>
+        {t('about.sourceAvailable')}<br>
         <a href="https://github.com/hansonxyz/xyzconnect" target="_blank" rel="noopener noreferrer">github.com/hansonxyz/xyzconnect</a>
       </p>
 
       <p class="about-dialog__tagline">
-        This software was provided in the spirit of open source,<br>
-        in the hope that it makes your life a little easier.
+        {t('about.tagline')}
       </p>
     </div>
   </div>

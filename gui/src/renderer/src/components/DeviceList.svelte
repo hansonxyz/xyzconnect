@@ -4,6 +4,7 @@
     requestPairing,
     unpairDevice
   } from '../stores/devices.svelte'
+  import { t } from '../stores/i18n.svelte'
 
   function isPaired(deviceId: string): boolean {
     return devices.pairedIds.includes(deviceId)
@@ -24,7 +25,7 @@
 
 {#if devices.pairedIds.length > 0}
   <div class="device-list__section">
-    <h3 class="device-list__section-title">Paired Devices</h3>
+    <h3 class="device-list__section-title">{t('devices.pairedDevices')}</h3>
     {#each pairedDiscovered as device (device.deviceId)}
       <div class="device-list__item device-list__item--paired">
         <div class="device-list__info">
@@ -35,7 +36,7 @@
           class="device-list__btn device-list__btn--danger"
           onclick={() => unpairDevice(device.deviceId)}
         >
-          Unpair
+          {t('devices.unpair')}
         </button>
       </div>
     {/each}
@@ -45,13 +46,13 @@
           <span class="device-list__name device-list__name--muted">
             {deviceId.substring(0, 8)}...
           </span>
-          <span class="device-list__meta">Offline</span>
+          <span class="device-list__meta">{t('devices.offline')}</span>
         </div>
         <button
           class="device-list__btn device-list__btn--danger"
           onclick={() => unpairDevice(deviceId)}
         >
-          Unpair
+          {t('devices.unpair')}
         </button>
       </div>
     {/each}
@@ -59,7 +60,7 @@
 {/if}
 
 <div class="device-list__section">
-  <h3 class="device-list__section-title">Nearby Devices</h3>
+  <h3 class="device-list__section-title">{t('devices.nearbyDevices')}</h3>
   {#each unpaired as device (device.deviceId)}
     <div class="device-list__item">
       <div class="device-list__info">
@@ -70,11 +71,11 @@
         class="device-list__btn device-list__btn--primary"
         onclick={() => requestPairing(device.deviceId)}
       >
-        Pair
+        {t('devices.pair')}
       </button>
     </div>
   {:else}
-    <p class="device-list__empty">No devices found nearby</p>
+    <p class="device-list__empty">{t('devices.noDevices')}</p>
   {/each}
 </div>
 

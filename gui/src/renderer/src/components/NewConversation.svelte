@@ -17,6 +17,7 @@
   } from '../stores/send-queue.svelte'
   import type { PendingMessage } from '../stores/send-queue.svelte'
   import ContactAutocomplete from './ContactAutocomplete.svelte'
+  import { t } from '../stores/i18n.svelte'
 
   let resolvedAddress: string | null = $state(null)
   let hasSent = $state(false)
@@ -96,14 +97,14 @@
 
 <div class="new-conversation">
   <div class="new-conversation__header">
-    <span class="new-conversation__label">To:</span>
+    <span class="new-conversation__label">{t('newMessage.to')}</span>
     {#if resolvedAddress}
       <div class="new-conversation__resolved">
         <span class="new-conversation__resolved-name">{resolvedDisplay}</span>
         <button
           class="new-conversation__resolved-clear"
           onclick={clearAddress}
-          title="Change recipient"
+          title={t('newMessage.changeRecipient')}
         >
           <svg viewBox="0 0 24 24" width="14" height="14">
             <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -123,28 +124,28 @@
             <p class="message-bubble__body">{pmsg.body}</p>
             <div class="message-bubble__status-row">
               {#if pmsg.status === 'sending'}
-                <span class="message-bubble__status">Sending...</span>
+                <span class="message-bubble__status">{t('messages.sending')}</span>
                 <button
                   class="message-bubble__cancel"
                   onclick={() => void cancelSend(pmsg.queueId)}
-                  title="Cancel"
+                  title={t('messages.cancel')}
                 >
                   <svg viewBox="0 0 24 24" width="14" height="14">
                     <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                   </svg>
                 </button>
               {:else if pmsg.status === 'sent'}
-                <span class="message-bubble__status">Sent</span>
+                <span class="message-bubble__status">{t('messages.sent')}</span>
               {:else if pmsg.status === 'timeout'}
-                <span class="message-bubble__status message-bubble__status--error">Failed to send</span>
+                <span class="message-bubble__status message-bubble__status--error">{t('messages.failed')}</span>
                 <button
                   class="message-bubble__action"
                   onclick={() => void retrySend(pmsg.queueId)}
-                >Retry</button>
+                >{t('messages.retry')}</button>
                 <button
                   class="message-bubble__cancel"
                   onclick={() => void cancelSend(pmsg.queueId)}
-                  title="Cancel"
+                  title={t('messages.cancel')}
                 >
                   <svg viewBox="0 0 24 24" width="14" height="14">
                     <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -157,11 +158,11 @@
       {/each}
     {:else if resolvedAddress}
       <div class="new-conversation__empty">
-        <p class="new-conversation__empty-text">Start a new conversation</p>
+        <p class="new-conversation__empty-text">{t('newMessage.startNew')}</p>
       </div>
     {:else}
       <div class="new-conversation__empty">
-        <p class="new-conversation__empty-text">Enter a contact name or phone number above</p>
+        <p class="new-conversation__empty-text">{t('newMessage.enterContact')}</p>
       </div>
     {/if}
   </div>
@@ -175,14 +176,14 @@
           bind:value={messageText}
           oninput={handleInput}
           onkeydown={handleKeydown}
-          placeholder="Type a message..."
+          placeholder={t('messages.compose')}
           rows="1"
         ></textarea>
         <button
           class="compose__send"
           disabled={!canSend}
           onclick={() => void handleSend()}
-          title="Send message"
+          title={t('messages.send')}
           type="button"
         >
           <svg viewBox="0 0 24 24" width="20" height="20">

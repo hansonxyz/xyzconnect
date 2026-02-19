@@ -6,6 +6,7 @@
   } from '../stores/attachments.svelte'
   import { openLightbox } from '../stores/lightbox.svelte'
   import { extractVerificationCode } from '../lib/verification'
+  import { t } from '../stores/i18n.svelte'
 
   interface Props {
     message: DisplayMessage
@@ -102,7 +103,7 @@
   class:message-bubble--received={!message.isSent}
 >
   {#if message.isSent && hasReadyAttachments}
-    <button class="message-bubble__save" onclick={handleSave} title="Save attachment">
+    <button class="message-bubble__save" onclick={handleSave} title={t('bubble.saveAttachment')}>
       <svg viewBox="0 0 24 24" width="38" height="38">
         <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
       </svg>
@@ -124,7 +125,7 @@
                   <img
                     class="attachment-media"
                     src={getAttachmentUrl(att.partId, att.messageId)}
-                    alt="MMS attachment"
+                    alt={t('bubble.mmsAlt')}
                     loading="lazy"
                   />
                 </button>
@@ -138,7 +139,7 @@
                     <img
                       class="attachment-media"
                       src={getThumbnailUrl(att.partId, att.messageId)}
-                      alt="Video"
+                      alt={t('bubble.videoAlt')}
                       loading="lazy"
                     />
                   {:else}
@@ -187,7 +188,7 @@
                 <svg viewBox="0 0 24 24" width="24" height="24">
                   <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
                 </svg>
-                <span>Failed to load</span>
+                <span>{t('bubble.failedToLoad')}</span>
               </div>
             {/if}
           </div>
@@ -207,18 +208,18 @@
           <svg viewBox="0 0 24 24" width="14" height="14">
             <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
           </svg>
-          {verificationCode} copied to clipboard
+          {t('bubble.codeCopied', { code: verificationCode })}
         {:else}
           <svg viewBox="0 0 24 24" width="14" height="14">
             <path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
           </svg>
-          Copy {verificationCode}
+          {t('bubble.copyCode', { code: verificationCode })}
         {/if}
       </button>
     {/if}
   </div>
   {#if !message.isSent && hasReadyAttachments}
-    <button class="message-bubble__save" onclick={handleSave} title="Save attachment">
+    <button class="message-bubble__save" onclick={handleSave} title={t('bubble.saveAttachment')}>
       <svg viewBox="0 0 24 24" width="38" height="38">
         <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
       </svg>

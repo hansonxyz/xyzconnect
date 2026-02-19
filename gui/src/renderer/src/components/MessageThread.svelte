@@ -11,6 +11,7 @@
   } from '../stores/send-queue.svelte'
   import type { PendingMessage } from '../stores/send-queue.svelte'
   import MessageBubble from './MessageBubble.svelte'
+  import { t } from '../stores/i18n.svelte'
   import { tick } from 'svelte'
   import 'emoji-picker-element'
 
@@ -32,10 +33,10 @@
 
     let content: string
     if (format === 'csv') {
-      const header = 'Date,From,Body'
+      const header = t('export.csvHeader')
       const rows = messages.rows.map((row) => {
         const date = new Date(row.date).toISOString()
-        const from = row.type === 2 ? 'Me' : row.address
+        const from = row.type === 2 ? t('export.me') : row.address
         const body = '"' + (row.body ?? '').replace(/"/g, '""') + '"'
         return `${date},${from},${body}`
       })
@@ -43,7 +44,7 @@
     } else {
       const lines = messages.rows.map((row) => {
         const date = new Date(row.date).toLocaleString()
-        const from = row.type === 2 ? 'Me' : row.address
+        const from = row.type === 2 ? t('export.me') : row.address
         return `[${date}] ${from}: ${row.body ?? ''}`
       })
       content = lines.join('\n')
@@ -401,7 +402,7 @@
           <button
             class="message-thread__icon-btn"
             onclick={() => { showExportMenu = !showExportMenu }}
-            title="Export conversation"
+            title={t('export.tooltip')}
           >
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
@@ -410,10 +411,10 @@
           {#if showExportMenu}
             <div class="message-thread__export-menu">
               <button class="message-thread__export-option" onclick={() => void exportThread('txt')}>
-                Export as TXT
+                {t('export.txt')}
               </button>
               <button class="message-thread__export-option" onclick={() => void exportThread('csv')}>
-                Export as CSV
+                {t('export.csv')}
               </button>
             </div>
           {/if}
@@ -425,11 +426,11 @@
   {#if messages.loading && messages.rows.length === 0}
     <div class="message-thread__status">
       <div class="message-thread__spinner"></div>
-      <span>Loading messages...</span>
+      <span>{t('messages.loading')}</span>
     </div>
   {:else if displayMessages.current.length === 0 && pendingMsgs.length === 0}
     <div class="message-thread__status">
-      <span>No messages in this conversation</span>
+      <span>{t('messages.empty')}</span>
     </div>
   {:else}
     <div
@@ -453,28 +454,28 @@
             <p class="message-bubble__body">{pmsg.body}</p>
             <div class="message-bubble__status-row">
               {#if pmsg.status === 'sending'}
-                <span class="message-bubble__status">Sending...</span>
+                <span class="message-bubble__status">{t('messages.sending')}</span>
                 <button
                   class="message-bubble__cancel"
                   onclick={() => void cancelSend(pmsg.queueId)}
-                  title="Cancel"
+                  title={t('messages.cancel')}
                 >
                   <svg viewBox="0 0 24 24" width="14" height="14">
                     <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                   </svg>
                 </button>
               {:else if pmsg.status === 'sent'}
-                <span class="message-bubble__status">Sent</span>
+                <span class="message-bubble__status">{t('messages.sent')}</span>
               {:else if pmsg.status === 'timeout'}
-                <span class="message-bubble__status message-bubble__status--error">Failed to send</span>
+                <span class="message-bubble__status message-bubble__status--error">{t('messages.failed')}</span>
                 <button
                   class="message-bubble__action"
                   onclick={() => void retrySend(pmsg.queueId)}
-                >Retry</button>
+                >{t('messages.retry')}</button>
                 <button
                   class="message-bubble__cancel"
                   onclick={() => void cancelSend(pmsg.queueId)}
-                  title="Cancel"
+                  title={t('messages.cancel')}
                 >
                   <svg viewBox="0 0 24 24" width="14" height="14">
                     <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -495,7 +496,7 @@
           class="compose__emoji-btn"
           class:compose__emoji-btn--active={showEmojiPicker}
           onclick={toggleEmojiPicker}
-          title="Emoji"
+          title={t('messages.emoji')}
           type="button"
         >
           <svg viewBox="0 0 24 24" width="20" height="20">
@@ -515,14 +516,14 @@
         bind:value={messageText}
         oninput={handleInput}
         onkeydown={handleKeydown}
-        placeholder="Type a message..."
+        placeholder={t('messages.compose')}
         rows="1"
       ></textarea>
       <button
         class="compose__send"
         disabled={!canSend}
         onclick={() => void handleSend()}
-        title="Send message"
+        title={t('messages.send')}
         type="button"
       >
         <svg viewBox="0 0 24 24" width="20" height="20">

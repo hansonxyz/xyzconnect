@@ -6,6 +6,9 @@
  * not on every message.
  */
 
+import { t } from '../stores/i18n.svelte'
+import { resolvedLocale } from '../stores/i18n.svelte'
+
 /** Minimum gap (ms) between messages before showing a new timestamp badge. */
 export const TIMESTAMP_GAP_MS = 15 * 60 * 1000 // 15 minutes
 
@@ -13,7 +16,7 @@ export const TIMESTAMP_GAP_MS = 15 * 60 * 1000 // 15 minutes
  * Format a time string. Always shows "3:42 PM" style.
  */
 function formatTime(timestamp: number): string {
-  return new Date(timestamp).toLocaleTimeString(undefined, {
+  return new Date(timestamp).toLocaleTimeString(resolvedLocale.current, {
     hour: 'numeric',
     minute: '2-digit',
   })
@@ -30,6 +33,7 @@ function formatTime(timestamp: number): string {
  */
 export function formatTimestampBadge(timestamp: number, isDayChange: boolean): string {
   const time = formatTime(timestamp)
+  const locale = resolvedLocale.current
 
   if (!isDayChange) return time
 
@@ -39,11 +43,11 @@ export function formatTimestampBadge(timestamp: number, isDayChange: boolean): s
   const messageDay = new Date(date.getFullYear(), date.getMonth(), date.getDate())
   const diffDays = Math.floor((today.getTime() - messageDay.getTime()) / 86400000)
 
-  if (diffDays === 0) return `Today, ${time}`
-  if (diffDays === 1) return `Yesterday, ${time}`
+  if (diffDays === 0) return `${t('time.today')}, ${time}`
+  if (diffDays === 1) return `${t('time.yesterday')}, ${time}`
 
   if (date.getFullYear() === now.getFullYear()) {
-    const datePart = date.toLocaleDateString(undefined, {
+    const datePart = date.toLocaleDateString(locale, {
       weekday: 'short',
       month: 'short',
       day: 'numeric',
@@ -51,7 +55,7 @@ export function formatTimestampBadge(timestamp: number, isDayChange: boolean): s
     return `${datePart}, ${time}`
   }
 
-  const datePart = date.toLocaleDateString(undefined, {
+  const datePart = date.toLocaleDateString(locale, {
     weekday: 'short',
     month: 'short',
     day: 'numeric',

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import { t } from '../stores/i18n.svelte'
 
   let updateStatus = $state<UpdateStatus>({ state: 'idle' })
   let dismissed = $state(false)
@@ -28,13 +29,13 @@
 {#if show}
   <div class="update-banner">
     <span class="update-banner__text">
-      Version {updateStatus.state === 'downloaded' ? updateStatus.version : ''} is ready to install.
+      {t('banner.ready', { version: updateStatus.state === 'downloaded' ? updateStatus.version : '' })}
     </span>
     <button class="update-banner__btn update-banner__btn--primary" onclick={install}>
-      Restart to Update
+      {t('banner.restart')}
     </button>
     <button class="update-banner__btn update-banner__btn--dismiss" onclick={() => (dismissed = true)}>
-      Later
+      {t('banner.later')}
     </button>
   </div>
 {/if}

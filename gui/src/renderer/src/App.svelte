@@ -16,6 +16,7 @@
   import { lightbox, closeLightbox } from './stores/lightbox.svelte'
   import { initSendQueueStore } from './stores/send-queue.svelte'
   import { settings, initSettingsStore } from './stores/settings.svelte'
+  import { t } from './stores/i18n.svelte'
   import StatusIndicator from './components/StatusIndicator.svelte'
   import ConversationList from './components/ConversationList.svelte'
   import MessageThread from './components/MessageThread.svelte'
@@ -198,13 +199,13 @@
   <aside class="sidebar" style:width="{settings.sidebarWidth}px">
     <div class="sidebar__header">
       <div class="sidebar__title-row">
-        <button class="sidebar__title" onclick={() => (showAbout = true)} title="About XYZConnect">XYZConnect</button>
+        <button class="sidebar__title" onclick={() => (showAbout = true)} title={t('app.about')}>{t('app.title')}</button>
         <div class="sidebar__actions">
           <button
             class="sidebar__icon-btn"
             class:sidebar__icon-btn--active={conversations.composingNew}
             onclick={() => startCompose()}
-            title="New message"
+            title={t('app.newMessage')}
           >
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path
@@ -217,7 +218,7 @@
             class="sidebar__icon-btn"
             class:sidebar__icon-btn--active={showFindPhone}
             onclick={() => { showFindPhone = !showFindPhone; if (showFindPhone) { showSettings = false; exitCompose() } }}
-            title="Find my phone"
+            title={t('app.findPhone')}
           >
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path
@@ -229,7 +230,7 @@
           <button
             class="sidebar__icon-btn"
             onclick={() => triggerSync()}
-            title="Sync messages"
+            title={t('app.syncMessages')}
           >
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path
@@ -242,7 +243,7 @@
             class="sidebar__icon-btn"
             class:sidebar__icon-btn--active={showSettings}
             onclick={() => { showSettings = !showSettings; if (showSettings) { showFindPhone = false; exitCompose() } }}
-            title="Settings"
+            title={t('app.settings')}
           >
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path
@@ -259,9 +260,9 @@
       {#if showConversations}
         <ConversationList />
       {:else if showPairing}
-        <p class="sidebar__placeholder">Connect a device to see conversations</p>
+        <p class="sidebar__placeholder">{t('app.sidebarPlaceholder')}</p>
       {:else}
-        <p class="sidebar__placeholder">Conversations will appear here</p>
+        <p class="sidebar__placeholder">{t('app.sidebarPlaceholderAlt')}</p>
       {/if}
     </div>
   </aside>
@@ -280,7 +281,7 @@
       <MessageThread />
     {:else}
       <div class="main-panel__empty">
-        <p class="main-panel__empty-text">Select a conversation to start messaging</p>
+        <p class="main-panel__empty-text">{t('app.emptyState')}</p>
       </div>
     {/if}
   </main>

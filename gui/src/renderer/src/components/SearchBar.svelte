@@ -5,6 +5,7 @@
     toggleSpamFilter,
     toggleUnreadFilter,
   } from '../stores/conversations.svelte'
+  import { t } from '../stores/i18n.svelte'
 
   function handleInput(event: Event): void {
     const target = event.target as HTMLInputElement
@@ -29,12 +30,12 @@
     <input
       class="search-bar__input"
       type="text"
-      placeholder="Search conversations..."
+      placeholder={t('search.placeholder')}
       value={conversations.searchQuery}
       oninput={handleInput}
     />
     {#if hasQuery}
-      <button class="search-bar__clear" onclick={clearSearch} title="Clear search">
+      <button class="search-bar__clear" onclick={clearSearch} title={t('search.clear')}>
         <svg viewBox="0 0 24 24" width="14" height="14">
           <path
             fill="currentColor"
@@ -48,7 +49,7 @@
     class="search-bar__filter"
     class:search-bar__filter--active={conversations.showUnreadOnly}
     onclick={toggleUnreadFilter}
-    title={conversations.showUnreadOnly ? 'Show all conversations' : 'Show unread only'}
+    title={conversations.showUnreadOnly ? t('search.showAll') : t('search.showUnread')}
   >
     <svg viewBox="0 0 24 24" width="16" height="16">
       <circle cx="12" cy="12" r="6" fill="currentColor"/>
@@ -58,7 +59,7 @@
     class="search-bar__filter"
     class:search-bar__filter--active={conversations.showSpam}
     onclick={toggleSpamFilter}
-    title={conversations.showSpam ? 'Filter spam/unknown' : 'Show all conversations'}
+    title={conversations.showSpam ? t('search.filterSpam') : t('search.showAll')}
   >
     <svg viewBox="0 0 24 24" width="16" height="16">
       <path

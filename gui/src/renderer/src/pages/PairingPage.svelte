@@ -7,6 +7,7 @@
     clearPairingError
   } from '../stores/devices.svelte'
   import DeviceList from '../components/DeviceList.svelte'
+  import { t } from '../stores/i18n.svelte'
   import qrCodeImage from '../assets/kdeconnect-qr.png'
 
   const hasAnyDevices = $derived(
@@ -18,58 +19,58 @@
   {#if effectiveState.current === 'no-daemon'}
     <div class="pairing-page__center">
       <div class="pairing-page__spinner pairing-page__spinner--large"></div>
-      <h2 class="pairing-page__title">Starting...</h2>
-      <p class="pairing-page__subtitle">Initializing XYZConnect</p>
+      <h2 class="pairing-page__title">{t('pairing.starting')}</h2>
+      <p class="pairing-page__subtitle">{t('pairing.initializing')}</p>
     </div>
 
   {:else if devices.incomingPairing}
     <div class="pairing-page__center">
-      <h2 class="pairing-page__title">Incoming Pairing Request</h2>
+      <h2 class="pairing-page__title">{t('pairing.incomingRequest')}</h2>
       <p class="pairing-page__subtitle">
-        <strong>{devices.incomingPairing.deviceName}</strong> wants to pair
+        {t('pairing.wantsToPair', { device: devices.incomingPairing.deviceName })}
       </p>
-      <p class="pairing-page__hint">Verify the code matches on your phone before accepting</p>
+      <p class="pairing-page__hint">{t('pairing.verifyHint')}</p>
       <div class="pairing-page__actions">
         <button
           class="pairing-page__btn pairing-page__btn--accept"
           onclick={() => acceptIncomingPairing(devices.incomingPairing!.deviceId)}
         >
-          Accept
+          {t('pairing.accept')}
         </button>
         <button
           class="pairing-page__btn pairing-page__btn--reject"
           onclick={() => rejectIncomingPairing(devices.incomingPairing!.deviceId)}
         >
-          Reject
+          {t('pairing.reject')}
         </button>
       </div>
     </div>
 
   {:else if devices.outgoingPairingKey}
     <div class="pairing-page__center">
-      <h2 class="pairing-page__title">Pairing</h2>
+      <h2 class="pairing-page__title">{t('pairing.title')}</h2>
       <div class="pairing-page__verification-key">{devices.outgoingPairingKey}</div>
-      <p class="pairing-page__subtitle">Confirm this code matches on your phone</p>
+      <p class="pairing-page__subtitle">{t('pairing.confirmCode')}</p>
       <div class="pairing-page__spinner"></div>
     </div>
 
   {:else if effectiveState.current === 'error'}
     <div class="pairing-page__center">
       <div class="pairing-page__icon pairing-page__icon--error">!</div>
-      <h2 class="pairing-page__title">Connection Error</h2>
+      <h2 class="pairing-page__title">{t('pairing.connectionError')}</h2>
       <p class="pairing-page__subtitle">
-        {connection.stateContext?.errorMessage ?? 'An unexpected error occurred'}
+        {connection.stateContext?.errorMessage ?? t('pairing.unexpectedError')}
       </p>
-      <p class="pairing-page__hint">The daemon will attempt to recover automatically</p>
+      <p class="pairing-page__hint">{t('pairing.autoRecover')}</p>
     </div>
 
   {:else}
     <div class="pairing-page__discovery">
       <div class="pairing-page__discovery-header">
-        <h2 class="pairing-page__title">Connect to Your Phone</h2>
+        <h2 class="pairing-page__title">{t('pairing.connectTitle')}</h2>
         <div class="pairing-page__searching">
           <div class="pairing-page__spinner"></div>
-          <span>Searching for devices...</span>
+          <span>{t('pairing.searching')}</span>
         </div>
       </div>
 
@@ -78,14 +79,14 @@
           <DeviceList />
         </div>
         <div class="pairing-page__setup-hint">
-          <span>Don't see your phone?</span>
-          Install
+          <span>{t('pairing.dontSeePhone')}</span>
+          {t('pairing.installKDE')}
           <a
             href="https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp"
             target="_blank"
             rel="noopener noreferrer"
-          >KDE Connect</a>
-          and connect to the same Wi-Fi network.
+          >{t('pairing.kdeConnect')}</a>
+          {t('pairing.sameWifi')}
         </div>
       {:else}
         <div class="pairing-page__onboarding">
@@ -97,15 +98,14 @@
               />
             </svg>
           </div>
-          <h3 class="pairing-page__onboarding-title">Get Started with KDE Connect</h3>
+          <h3 class="pairing-page__onboarding-title">{t('pairing.getStarted')}</h3>
           <p class="pairing-page__onboarding-text">
-            Install KDE Connect on your Android phone to sync your messages,
-            contacts, and notifications with your computer.
+            {t('pairing.installDescription')}
           </p>
           <img
             class="pairing-page__onboarding-qr"
             src={qrCodeImage}
-            alt="QR code to download KDE Connect from Google Play"
+            alt={t('pairing.qrAlt')}
             width="160"
             height="160"
           />
@@ -115,12 +115,12 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            Get it on Google Play
+            {t('pairing.googlePlay')}
           </a>
           <ol class="pairing-page__onboarding-steps">
-            <li>Install KDE Connect on your phone</li>
-            <li>Open the app and make sure you're on the same Wi-Fi network</li>
-            <li>Your phone will appear here automatically</li>
+            <li>{t('pairing.step1')}</li>
+            <li>{t('pairing.step2')}</li>
+            <li>{t('pairing.step3')}</li>
           </ol>
         </div>
       {/if}
@@ -130,7 +130,7 @@
   {#if devices.pairingError}
     <div class="pairing-page__toast">
       <span>{devices.pairingError}</span>
-      <button class="pairing-page__toast-dismiss" onclick={clearPairingError}>Dismiss</button>
+      <button class="pairing-page__toast-dismiss" onclick={clearPairingError}>{t('pairing.dismiss')}</button>
     </div>
   {/if}
 </div>

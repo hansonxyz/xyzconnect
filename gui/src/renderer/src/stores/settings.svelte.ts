@@ -13,6 +13,7 @@ interface PersistedSettings {
   sidebarWidth: number
   showSpam: boolean
   autoCheckUpdates: boolean
+  locale: string
 }
 
 const DEFAULTS: PersistedSettings = {
@@ -21,6 +22,7 @@ const DEFAULTS: PersistedSettings = {
   sidebarWidth: 280,
   showSpam: false,
   autoCheckUpdates: true,
+  locale: 'auto',
 }
 
 function loadSettings(): PersistedSettings {
@@ -52,6 +54,7 @@ export const settings = $state({
   sidebarWidth: initial.sidebarWidth,
   showSpam: initial.showSpam,
   autoCheckUpdates: initial.autoCheckUpdates,
+  locale: initial.locale,
 })
 
 /**
@@ -66,6 +69,7 @@ export function initSettingsStore(): void {
       sidebarWidth: settings.sidebarWidth,
       showSpam: settings.showSpam,
       autoCheckUpdates: settings.autoCheckUpdates,
+      locale: settings.locale,
     })
   })
 }

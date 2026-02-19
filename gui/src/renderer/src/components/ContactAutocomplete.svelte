@@ -1,6 +1,7 @@
 <script lang="ts">
   import { contacts } from '../stores/contacts.svelte'
   import { formatPhone } from '../lib/phone'
+  import { t } from '../stores/i18n.svelte'
 
   interface Props {
     onSelect: (address: string) => void
@@ -101,7 +102,7 @@
     bind:this={inputEl}
     class="autocomplete__input"
     type="text"
-    placeholder="Type a name or phone number..."
+    placeholder={t('contacts.placeholder')}
     bind:value={query}
     onkeydown={handleKeydown}
   />

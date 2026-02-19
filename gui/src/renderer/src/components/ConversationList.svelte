@@ -2,6 +2,7 @@
   import SearchBar from './SearchBar.svelte'
   import ConversationItem from './ConversationItem.svelte'
   import { displayConversations, conversations } from '../stores/conversations.svelte'
+  import { t } from '../stores/i18n.svelte'
 
   const isEmpty = $derived(displayConversations.current.length === 0)
 </script>
@@ -12,14 +13,14 @@
   {#if conversations.loading && conversations.raw.length === 0}
     <div class="conversation-list__status">
       <div class="conversation-list__spinner"></div>
-      <span>Loading conversations...</span>
+      <span>{t('conversations.loading')}</span>
     </div>
   {:else if isEmpty}
     <div class="conversation-list__status">
       {#if conversations.searchQuery}
-        <span>No conversations match your search</span>
+        <span>{t('conversations.noMatch')}</span>
       {:else}
-        <span>No conversations yet</span>
+        <span>{t('conversations.empty')}</span>
       {/if}
     </div>
   {:else}

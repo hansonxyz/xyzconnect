@@ -18,6 +18,7 @@ import { settings } from './settings.svelte'
 import { formatTimestampBadge, isDifferentDay, TIMESTAMP_GAP_MS } from '../lib/message-format'
 import { formatPhone } from '../lib/phone'
 import { isVerificationMessage } from '../lib/verification'
+import { t } from './i18n.svelte'
 
 export const messages = $state({
   threadId: null as number | null,
@@ -208,7 +209,7 @@ export function markAttachmentDownloaded(partId: number, messageId: number): voi
 
 function showMessageNotification(_threadId?: number): void {
   try {
-    void new Notification('XYZConnect', { body: 'New message received', silent: false })
+    void new Notification('XYZConnect', { body: t('notification.newMessage'), silent: false })
   } catch {
     // Notification API not available
   }
