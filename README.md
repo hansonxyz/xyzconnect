@@ -89,9 +89,8 @@ npm run release:mac    # macOS
 
 ## Current Limitations
 
-- MMS send is not yet implemented (receive and view works)
-- macOS DMG must be built on a Mac (cannot cross-compile)
-- No end-to-end encryption beyond TLS on the local network
+- MMS send is not yet implemented (Android companion app limitation)
+- macOS DMG not yet available (I need a mac to do this)
 
 ## License
 
