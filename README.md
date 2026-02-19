@@ -14,8 +14,8 @@ The primary motivation for this app was to make the pain of dealing with SMS 2FA
 
 - **Send and receive SMS** — Full two-way texting from your desktop
 - **View and save MMS** — Photos, videos, and audio arrive automatically with transcoding for browser-compatible playback
-- **Spam filter** — Hides unknown senders and short codes; surfaces verification messages
 - **One-click verification codes** — Copy 2FA codes from messages with a single click
+- **Spam filter** — Hides unknown senders and short codes; surfaces verification messages
 - **Unread filter** — Quickly see only conversations with new messages
 - **Desktop notifications** — Get notified of new messages with taskbar flash (Windows)
 - **Cross-platform** — Windows installer, Linux AppImage and .deb, macOS DMG
