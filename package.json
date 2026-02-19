@@ -1,0 +1,44 @@
+{
+  "name": "xyzconnect",
+  "version": "0.1.1",
+  "description": "KDE Connect SMS daemon and CLI for desktop",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "dev": "tsx watch bin/xyzd.ts",
+    "daemon": "tsx bin/xyzd.ts",
+    "cli": "tsx bin/xyz.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "vitest run tests/e2e",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "commander": "^13.1.0",
+    "js-yaml": "^4.1.0",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "selfsigned": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.13.4",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  },
+  "keywords": [
+    "kdeconnect",
+    "sms",
+    "daemon",
+    "cli"
+  ],
+  "license": "(GPL-2.0-only OR GPL-3.0-only)"
+}
