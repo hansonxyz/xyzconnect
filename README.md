@@ -30,7 +30,6 @@ Most desktop SMS solutions require cloud relay services, Google accounts, or pro
 
 - **Fully local** — Messages never leave your network. No cloud, no relay servers, no accounts.
 - **Free and open source** — Licensed under GNU GPL v2/v3, the same as KDE Connect itself.
-- **Works with an open protocol** — Uses the KDE Connect protocol, not a proprietary API.
 
 ## Getting Started
 
