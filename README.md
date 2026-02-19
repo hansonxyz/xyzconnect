@@ -6,6 +6,8 @@
   <a href="docs/screenshot.png"><img src="docs/screenshot.png" alt="XYZConnect screenshot" width="600"></a>
 </p>
 
+<p align="center">The primary motivation for this app was to make the pain of dealing with SMS 2FA codes easier to deal with, and the project snowballed into a full SMS client to replace Microsoft Phone Link and similar with an open source solution.
+
 ## Features
 
 - **Send and receive SMS** — Full two-way texting from your desktop
