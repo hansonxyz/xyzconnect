@@ -17,7 +17,6 @@
 - **Desktop notifications** — Get notified of new messages with taskbar flash (Windows)
 - **Cross-platform** — Windows installer, Linux AppImage and .deb, macOS DMG
 - **Local network only** — All communication stays on your LAN. Nothing leaves your network.
-- **New message compose** — Start conversations with any phone number
 - **Image lightbox** — Click to view full-size images and videos with right-click save
 - **Search** — Filter conversations by contact name or phone number
 
