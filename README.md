@@ -44,7 +44,7 @@ Most desktop SMS solutions require cloud relay services, Google accounts, or pro
 Pre-built installers are available from the [latest release](https://github.com/hansonxyz/xyzconnect/releases/latest):
 
 - **Windows** — [XYZConnect Setup (.exe)](https://github.com/hansonxyz/xyzconnect/releases/latest/download/XYZConnect.Setup.0.1.0.exe) (Fully Tested)
-- **Linux** — [AppImage](https://github.com/hansonxyz/xyzconnect/releases/latest/download/XYZConnect-0.1.0.AppImage) | [.deb](https://github.com/hansonxyz/xyzconnect/releases/latest/download/xyzconnect-gui_0.1.0_amd64.deb) (CUrrently untested, probably works)
+- **Linux** — [AppImage](https://github.com/hansonxyz/xyzconnect/releases/latest/download/XYZConnect-0.1.0.AppImage) | [.deb](https://github.com/hansonxyz/xyzconnect/releases/latest/download/xyzconnect-gui_0.1.0_amd64.deb) (Currently untested, probably works)
 - **macOS** — Coming soon
 
 ## Building From Source
