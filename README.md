@@ -1,6 +1,6 @@
 <h1 align="center">XYZConnect</h1>
 
-<p align="center">A free and open source desktop SMS/MMS client for Android, powered by the KDE Connect protocol.<br>Send and receive text messages from your computer over your local network without a proprietary application, subscription service, or the cloud.</p>
+<p align="center">A free and open source desktop SMS/MMS client for Android, powered by the KDE Connect protocol.<br>Send and receive text messages from your computer over your local network without 'the cloud'.</p>
 
 <p align="center">
   <a href="docs/screenshot.png"><img src="docs/screenshot.png" alt="XYZConnect screenshot" width="600"></a>
